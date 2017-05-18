@@ -92,8 +92,9 @@
     </div>
 
     <div class="notes">
-      <p><b>Completion Time:</b> 4.5 hrs</p>
-      <p>something else</p>
+      <p><b>Completion Time:</b> 5 1/2 hrs</p>
+      <p><b>Languages:</b> CSS, HTML, PHP</p>
+      Other stuff
     </div>
 
     <div class="links">

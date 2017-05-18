@@ -112,7 +112,7 @@
               <td>{{ $fav_attorney->firm_name }}</td>
               <td>{{ $fav_attorney->city }}</td>
               <td>{{ $fav_attorney->state }}</td>
-              <td><a href="#" class="btn btn-danger" role="button">Unfavorite</a></td>
+              <td><a href="{{ url('/remove-favorite-attorney') . '/' . $fav_attorney->attorney_id }}" class="btn btn-danger" role="button">Unfavorite</a></td>
               <td><a href="{{ url('/attorney') . '/' . $fav_attorney->attorney_id }}" class="btn btn-primary" role="button">View</a></td>
             </tr>
           </tbody>
@@ -148,7 +148,36 @@
           </tbody>
         @endforeach
       </table>
-      {{ $attorneys->links() }}
+
+      <div class="row">
+        <div class="col-sm-12">
+          @if ( $pagination->total_pages > 1)
+            <ul class="pagination">
+
+              <li class="{{ ($pagination->current_page == 1) ? ' disabled' : '' }}">
+                @if(isset($pagination->links->previous))
+                  <a href="{{ url('/attorneys') . strstr($pagination->links->previous, '?') }}"> Prev </a>
+                @endif
+              </li>
+
+              @for ($i=1; $i <= $pagination->total_pages; $i++)
+                <li class="{{ ($pagination->current_page == $i) ? ' active' : '' }}">
+                  @if(isset($pagination->links->next))
+                    <a href="{{ url('/attorneys') . strstr($pagination->links->next, '?') }}">{{ $i }}</a>
+                  @endif
+                </li>
+              @endfor
+
+              <li class="{{ ($pagination->current_page == $pagination->total_pages ? ' disabled' : '') }}">
+                @if(isset($pagination->links->next))
+                  <a href="{{ url('/attorneys') . strstr($pagination->links->next, '?') }}"> Next </a>
+                @endif
+              </li>
+            </ul>
+
+          @endif
+        </div>
+      </div>
     </div>
   </div>
 </body>
